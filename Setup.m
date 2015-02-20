@@ -30,6 +30,17 @@ untar('jlp_nii.tar.gz','jlpUntarred')
 untar('runs.tgz','runsUntarred')
 untar('jlp_anat.tgz','jlp_anat') 
 
+% setting paths to a given file within the file architecture we've set up
+dataDir = fullfile('anat', 'native', 'nii');
+dataPath = fullfile(dataDir, 'filename');
+
 % using SPM to load .nii files
-headerData = spm_vol('filename');
-data = spm_read_vols(headerData)
+headerData = spm_vol(dataPath);
+img = spm_read_vols(headerData);
+% Show image at a particular dimension
+imagesc(img(:,:,10));
+% Show all images within a certain range
+for i=1:30
+  subplot(5,6,i);
+  imagesc(img(:,:,i)
+end
